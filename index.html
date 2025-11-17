@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mundo de los Brazos Robóticos — Curso 3D</title> <link rel="stylesheet" href="styles.css"
+  <meta name="description" content="Página informativa sobre brazos robóticos e sección del Curso 3D. Diseño minimalista."/>
+  <style>
+    /* ==========================
+       Reset + Base
+       ========================== */
+    :root{
+      --bg:#f7f7f8;
+      --card:#ffffff;
+      --muted:#6b6b6b;
+      --accent:#0b66ff; /* color principal */
+      --glass: rgba(255,255,255,0.7);
+      --radius:14px;
+      --maxw:1100px;
+      --shadow: 0 6px 18px rgba(20,20,30,0.06);
+      --mono: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--mono);
+      background:var(--bg);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:20px 14px; /* reducido para móvil */
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+    }
+
+    /* ==========================
+       Header / Nav
+       ========================== */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:48px;height:48px;
+      border-radius:10px;
+      background:linear-gradient(180deg,#fff,#f1f4ff);
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(10,10,10,0.04);
+      box-shadow:var(--shadow);
+      font-weight:700;color:var(--accent);
+      font-size:16px;
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    nav a{
+      text-decoration:none;color:var(--muted);
+      font-size:13px;padding:6px 10px;border-radius:10px;
+    }
+    nav a.cta{
+      background:var(--accent);color:white;
+      box-shadow:0 6px 18px rgba(11,102,255,0.18);
+    }
+
+    /* ==========================
+       Hero
+       ========================== */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;
+      align-items:center;
+      margin-bottom:22px;
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+    }
+    .hero-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+    .hero h2{margin:0 0 8px 0;font-size:22px}
+    .hero p{margin:0 0 12px;color:var(--muted)}
+    .hero .cta-group{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.secondary{background:transparent;border:1px solid rgba(10,10,10,0.06);color:var(--muted)}
+    .btn.primary{background:var(--accent);color:white;box-shadow:0 8px 22px rgba(11,102,255,0.14)}
+
+    /* ==========================
+       SVG preview / illustration
+       ========================== */
+    .illu{width:100%;height:100%;display:grid;place-items:center}
+    .illu svg{width:100%;height:auto;max-height:280px}
+
+    /* ==========================
+       Sections
+       ========================== */
+    section{margin:16px 0}
+    .section-title{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+    .section-title h3{margin:0;font-size:16px}
+    .grid{display:grid;gap:12px}
+
+    /* cards grid */
+    .cards-3{grid-template-columns:repeat(3,1fr)}
+    .cards-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:980px){
+      .cards-3{grid-template-columns:1fr}
+      .cards-2{grid-template-columns:1fr}
+    }
+
+    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* gallery grid */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:980px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .gallery{grid-template-columns:1fr} }
+
+    .gallery figure{margin:0;padding:0;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#fff,#fbfbfd);display:flex;align-items:center;justify-content:center;height:180px;border:1px solid rgba(10,10,10,0.04)}
+
+    /* Curso 3D */
+    .curso-grid{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:start}
+    @media (max-width:880px){ .curso-grid{grid-template-columns:1fr} }
+
+    /* cards of members */
+    .member-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    @media (max-width:980px){ .member-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:540px){ .member-grid{grid-template-columns:1fr} }
+
+    .member{text-align:center;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbfd);border:1px solid rgba(10,10,10,0.03)}
+    .avatar{width:84px;height:84px;border-radius:50%;display:inline-grid;place-items:center;margin:0 auto 8px;font-weight:700;font-size:20px;color:white}
+    .role{font-size:13px;color:var(--muted);margin-top:6px}
+
+    /* checklist */
+    .checklist{display:flex;flex-direction:column;gap:8px}
+    .checklist li{background:linear-gradient(180deg,#fff,#f8fafc);padding:10px;border-radius:10px;border:1px solid rgba(10,10,10,0.03)}
+
+    /* footer */
+    footer{margin-top:18px;padding:14px;border-radius:12px;background:var(--card);box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center}
+    footer small{color:var(--muted)}
+
+    /* tiny util */
+    .kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+
+    /* Ajustes específicos móviles para botones y texto legible */
+    @media (max-width:420px){
+      body{padding:12px}
+      .logo{width:44px;height:44px;font-size:14px}
+      .hero h2{font-size:20px}
+      .avatar{width:72px;height:72px;font-size:18px}
+      nav a{font-size:12px;padding:6px}
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="wrap">
+
+    <!-- Header -->
+    <header>
+      <a class="brand" href="#">
+        <div class="logo">MR</div>
+        <div>
+          <h1>Mundo de los Brazos Robóticos</h1>
+          <div class="kicker">Historia · Tipos · Curso 3D</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#historia">Historia</a>
+        <a href="#tipos">Tipos</a>
+        <a href="#galeria">Galería</a>
+        <a class="cta" href="#curso">Curso 3D</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <main class="hero">
+      <div class="hero-card">
+        <div class="kicker">Explora</div>
+        <h2>Brazos robóticos — qué son, cómo funcionan y dónde se usan</h2>
+        <p>Una guía completa, con imágenes ilustrativas, ejemplos técnicos y un apartado especial para tu Curso 3D.</p>
+
+        <div class="cta-group">
+          <a class="btn primary" href="#tipos">Ver tipos</a>
+          <a class="btn secondary" href="#curso">Ir al Curso 3D</a>
+        </div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(10,10,10,0.04)">
+
+        <div class="muted">Mini-índice: Historia · Componentes · Aplicaciones · Galería · Equipo Curso 3D</div>
+      </div>
+
+     
+    </main>
+
+    <!-- Historia -->
+    <section id="historia">
+      <div class="section-title">
+        <h3>Historia breve</h3>
+        <div class="kicker">¿Cuándo y quién?</div>
+      </div>
+
+      <div class="grid cards-2">
+        <div class="card">
+          <h4>Orígenes</h4>
+          <p class="muted">Los primeros manipuladores industriales aparecieron en los años 50–60. El primer brazo industrial moderno conocido fue <strong>Unimate</strong> (creado por George Devol y Joseph Engelberger). Se usó en fábricas automotrices para tareas repetitivas y peligrosas.</p>
+          <ul class="muted" style="margin-top:10px;">
+            <li><strong>1954–1961:</strong> primeros desarrollos y patentes.</li>
+            <li><strong>1970s–1990s:</strong> expansión industrial (FANUC, ABB, KUKA).</li>
+            <li><strong>2000s–hoy:</strong> robots colaborativos (cobots), mayor precisión y control por IA.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4>Evolución técnica</h4>
+          <p class="muted">Evolucionaron desde sistemas hidráulicos y neumáticos a diseños eléctricos compactos con servomotores, control digital y sensores avanzados. La integración con visión artificial y aprendizaje automático permitió nuevas aplicaciones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tipos -->
+    <section id="tipos">
+      <div class="section-title">
+        <h3>Tipos de brazos robóticos</h3>
+        <div class="kicker">Comparativa técnica</div>
+      </div>
+
+      <div class="grid cards-3">
+        <div class="card">
+          <h4>Hidráulicos</h4>
+          <p class="muted">Alta fuerza, usados donde se requiere gran potencia (construcción, maquinaria pesada). Requieren bomba, circuito hidráulico y mantenimiento.</p>
+        </div>
+        <div class="card">
+          <h4>Neumáticos</h4>
+          <p class="muted">Simples y baratos, buena velocidad pero fuerza limitada. Comunes en líneas de ensamblaje para empujar/ordenar piezas.</p>
+        </div>
+        <div class="card">
+          <h4>Eléctricos</h4>
+          <p class="muted">Mayor control de precisión (servomotores), eficientes y limpios — hoy dominan en la industria electrónica, médica y educativa.</p>
+        </div>
+
+        <div class="card">
+          <h4>Cobots (colaborativos)</h4>
+          <p class="muted">Diseñados para trabajar junto a personas. Seguridad integrada y programación más accesible.</p>
+        </div>
+        <div class="card">
+          <h4>Educativos</h4>
+          <p class="muted">Pequeños, modulares, ideales para aprender (Arduino, ROS hasta kits comerciales).</p>
+        </div>
+        <div class="card">
+          <h4>Médicos / quirúrgicos</h4>
+          <p class="muted">Alta precisión y redundancia; usados en cirugía asistida por robot (ej.: Da Vinci — aunque es un sistema completo más que "brazo simple").</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Componentes -->
+    <section id="componentes">
+      <div class="section-title">
+        <h3>Componentes principales</h3><div class="kicker">Anatomía</div>
+      </div>
+
+      <div class="grid cards-3">
+        <div class="card">
+          <h4>Eslabones y juntas</h4>
+          <p class="muted">DUn brazo robótico está formado por eslabones (partes rígidas) y juntas (articulaciones que generan movimiento).
+Los eslabones son como los huesos: conectan una junta con otra y dan la longitud del brazo.
+Las juntas son los puntos donde el brazo se mueve; pueden ser rotacionales (giran) o prismáticas (se deslizan).
+Cada junta agrega un grado de libertad, permitiendo que el brazo se mueva en distintas direcciones.</p>
+        </div>
+        <div class="card">
+          <h4>Actuadores</h4>
+          <p class="muted">Un actuador es el componente que genera el movimiento en un robot, funcionando como sus “músculos”. Toma energía—ya sea eléctrica, hidráulica o neumática—y la transforma en un movimiento real que permite que las juntas del brazo robótico giren, se deslicen o ejerzan fuerza. Sin actuadores, un robot solo sería una estructura rígida sin capacidad de moverse.</p>
+        </div>
+        <div class="card">
+          <h4>Efector final</h4>
+          <p class="muted">El efector final es la herramienta ubicada en la punta del brazo robótico, encargada de realizar la tarea específica para la que fue diseñado el robot. Puede ser una pinza que toma objetos, una ventosa, una herramienta de soldadura, un destornillador automático o incluso una cuchilla de corte. Es la parte que *interactúa directamente* con el entorno, por lo que cambia según la aplicación: agarrar, cortar, ensamblar, soldar, medir o manipular piezas. Sin el efector final, el robot podría moverse, pero no podría hacer ningún trabajo útil.
+</p>
+        </div>
+      </div>
+    </section>
+<section id="simulador-hidraulico">
+  <div class="section-title">
+    <h3>Simulador de Brazo Hidráulico</h3>
+    <div class="kicker">Interactivo · 2D</div>
+  </div>
+
+  <div class="sim-h-container">
+    <canvas id="hydroCanvas"></canvas>
+
+    <div class="controls">
+      <label>💧 Cilindro Base
+        <input type="range" id="c1" min="0" max="100" value="50">
+      </label>
+
+      <label>💧 Cilindro Codo
+        <input type="range" id="c2" min="0" max="100" value="50">
+      </label>
+
+      <label>💧 Cilindro Pinza
+        <input type="range" id="c3" min="0" max="100" value="50">
+      </label>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Galería real de brazos robóticos -->
+<section id="galeria">
+  <div class="section-title">
+    <h3>Galería real de brazos robóticos</h3>
+    <div class="kicker">Industriales · Cobots</div>
+  </div>
+
+  <div class="gallery">
+
+    <figure>
+      <img src="https://th.bing.com/th/id/R.70c40e0e308701d1571d4337ee047a75?rik=c9jGgvEEym0Rcg&pid=ImgRaw&r=0" 
+           alt="Brazo robótico industrial" style="width:50%; height:100%; object-fit:cover;">
+    </figure>
+
+    <figure>
+      <img src="https://image.freepik.com/foto-gratis/brazo-robot-metal-representacion-3d-sobre-fondo-blanco_493806-1680.jpg" 
+           alt="Brazo robótico blanco metalizado" style="width:50%; height:100%; object-fit:cover;">
+    </figure>
+
+    <figure>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyW7bt9q43klGINsWC4bHLygRBfV2jy3Fvbw&s"
+           alt="Brazo robótico KUKA" style="width:100%; height:100%; object-fit:cover;">
+    </figure>
+
+    <figure>
+      <img src="https://png.pngtree.com/png-clipart/20250110/original/pngtree-3d-white-robotic-arm-for-manufacturing-on-transparent-background-png-image_20135554.png"
+           alt="Brazo robótico transparente" style="width:50%; height:100%; object-fit:cover;">
+    </figure>
+
+    <figure>
+      <img src="https://thumbs.dreamstime.com/b/brazo-de-robot-industrial-amarillo-en-la-l%C3%ADnea-producci%C3%B3n-f%C3%A1brica-moderna-unidad-mantenimiento-311224532.jpg"
+           alt="Brazo en línea de producción" style="width:100%; height:100%; object-fit:cover;">
+    </figure>
+
+    <figure>
+      <img src="https://mecaluxcl.cdnwm.com/blog/img/brazos-roboticos-funciones.1.1.jpg   "
+           alt="Brazo robótico en fábrica" style="width:100%; height:100%; object-fit:cover;">
+    </figure>
+
+  </div>
+</section>
+
+    <!-- Curso 3D -->
+    <section id="curso">
+      <div class="section-title">
+        <h3>Curso 3D — Integrantes y directiva</h3><div class="kicker">Presentación del equipo</div>
+      </div>
+
+      <div class="curso-grid">
+        <!-- izquierda: tarjeta del curso + checklist -->
+        <div class="card">
+          <h4>Curso 3D — Área: Telecomunicaciones</h4>
+          <p class="muted">En Telecomunicaciones se instalan redes de cableado estructurado y fibra óptica, se configuran routers y switches, se arman racks y patch panels, y se realizan pruebas de conectividad. También se trabajan redes inalámbricas como WiFi y enlaces punto a punto, además de medir y optimizar la señal. Se realiza fusión y certificación de fibra óptica, incluyendo el uso de OTDR y la instalación de redes FTTH. En telefonía se configura VoIP, se instalan centrales telefónicas y se mantienen antenas y radio bases 4G/5G. En televisión y radio se implementan sistemas de TV digital, IPTV, equipos de transmisión y antenas. En seguridad electrónica se instalan cámaras IP, sistemas de vigilancia, alarmas y control de acceso. Además, se configuran servidores como DHCP, DNS, correo y web, se trabaja con virtualización, administración de redes y automatización mediante Arduino e IoT.
+          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(10,10,10,0.04)">
+
+          <div class="kicker" style="margin-bottom:8px"></div>
+          <ul class="checklist" style="padding-left:0;list-style:none">
+           
+          </ul>
+        </div>
+
+        <!-- derecha: directiva y miembros -->
+        <div>
+          <div class="card" style="margin-bottom:12px">
+            <h4>Directiva</h4>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <!-- Directiva cards actualizados con nombres que diste -->
+              <div class="member" style="width:170px">
+                <div class="avatar" style="background:#0b66ff">N</div>
+                <div style="font-weight:700">Nicolás Ordoñez</div>
+                <div class="role">Presidente</div>
+              </div>
+
+              <div class="member" style="width:170px">
+                <div class="avatar" style="background:#7b7bff">C</div>
+                <div style="font-weight:700">Carlos Saravia</div>
+                <div class="role">Vicepresidente</div>
+              </div>
+
+              <div class="member" style="width:170px">
+                <div class="avatar" style="background:#5ab3ff">M</div>
+                <div style="font-weight:700">Mashay Ríos</div>
+                <div class="role">Secretaria</div>
+              </div>
+
+              <div class="member" style="width:170px">
+                <div class="avatar" style="background:#00bfa6">P</div>
+                <div style="font-weight:700">Pablo César Muñoz</div>
+                <div class="role">Tesorero</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Sobre el curso</h4>
+            <p class="muted">El curso está orientado al área de Telecomunicaciones: trabajamos redes, comunicaciones inalámbricas, montaje de dispositivos IoT, y prototipado para sistemas embebidos y robótica educativa. Contamos con profesores como: La Profesora Maribel Soto-Aguilar, El Profesor Roberto Acevedo, El Profesor Ricardo Carvajal, El profesor Miguel Ollarse, El Profesor Sergio Figueroa, El Profesor Luis Garcia y El Profesor Gomez</p>
+            <p class="muted" style="margin-top:8px"
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist extendido -->
+    <section>
+      
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <small>© <strong>Curso 3D — Mundo de los Brazos Robóticos</strong></small>
+      <div class="muted">Hecho por tu equipo · <small style="color:var(--muted)">KarmaCoreStudios</small></div>
+    </footer>
+
+    <script>
+const canvas = document.getElementById("hydroCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const c1 = document.getElementById("c1");
+const c2 = document.getElementById("c2");
+const c3 = document.getElementById("c3");
+
+function drawArm(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  const baseX = canvas.width/2;
+  const baseY = canvas.height - 40;
+
+  // Convertir sliders a ángulos
+  const ang1 = (c1.value/100)*Math.PI*0.8 - Math.PI*0.4;
+  const ang2 = (c2.value/100)*Math.PI*1.2 - Math.PI*0.6;
+  const ang3 = (c3.value/100)*Math.PI*1.2 - Math.PI*0.6;
+
+  const len1 = 120;
+  const len2 = 90;
+  const len3 = 60;
+
+  // Coordenadas de articulaciones
+  const x1 = baseX + Math.cos(ang1)*len1;
+  const y1 = baseY + Math.sin(ang1)*len1;
+
+  const x2 = x1 + Math.cos(ang1+ang2)*len2;
+  const y2 = y1 + Math.sin(ang1+ang2)*len2;
+
+  const x3 = x2 + Math.cos(ang1+ang2+ang3)*len3;
+  const y3 = y2 + Math.sin(ang1+ang2+ang3)*len3;
+
+  ctx.lineCap = "round";
+  ctx.lineWidth = 12;
+
+  // Base
+  ctx.fillStyle = "#224488";
+  ctx.fillRect(baseX-30, baseY+5, 60, 20);
+
+  // Segmento 1
+  ctx.strokeStyle = "#0b66ff";
+  ctx.beginPath();
+  ctx.moveTo(baseX, baseY);
+  ctx.lineTo(x1, y1);
+  ctx.stroke();
+
+  // Segmento 2
+  ctx.strokeStyle = "#4c8bff";
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+
+  // Pinza
+  ctx.strokeStyle = "#7aa6ff";
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x3, y3);
+  ctx.stroke();
+
+  // Puntos de articulación
+  ctx.fillStyle = "#002b80";
+  [ [baseX,baseY], [x1,y1], [x2,y2] ].forEach(j=>{
+    ctx.beginPath();
+    ctx.arc(j[0], j[1], 8, 0, Math.PI*2);
+    ctx.fill();
+  });
+}
+
+[c1,c2,c3].forEach(sl => sl.addEventListener("input", drawArm));
+drawArm();
+</script>
+
+  </div>
+

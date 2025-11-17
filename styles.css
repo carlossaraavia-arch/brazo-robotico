@@ -1,0 +1,41 @@
+/* === Simulador Hidráulico === */
+.sim-h-container{
+  background: var(--card);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 16px;
+  align-items: center;
+}
+@media(max-width:880px){
+  .sim-h-container{ grid-template-columns:1fr; }
+}
+
+#hydroCanvas{
+  width:100%;
+  height:300px;
+  background:#eef3ff;
+  border-radius:12px;
+}
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.controls label{
+  font-size:14px;
+  color:var(--muted);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.controls input[type="range"]{
+  width:100%;
+}
+
+html{
+  scroll-behavior: smooth;
+}
